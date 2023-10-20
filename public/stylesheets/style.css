@@ -1,0 +1,210 @@
+body {
+  margin: 0;
+  padding: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #083344;
+  background-color: #f0fdfa;
+}
+
+header {
+  margin: 0;
+  padding: 10px 0;
+  width: 100%;
+  background-color: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 2px 0 10px lightgray;
+}
+
+header .greeting {
+  position: absolute;
+  left: 2rem;
+  font-size: large;
+}
+
+header a {
+  position: absolute;
+  right: 4rem;
+  font-size: x-large;
+  color: #082f49;
+}
+
+.content {
+  text-align: center;
+  border-radius: 12px;
+  margin: 2rem auto;
+  padding: 1rem 0;
+  width: 50vw;
+  background-color: #fafafa;
+  box-shadow: 4px 5px 4px -3px lightgray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content a.contentLink {
+  color: #075985;
+  font-size: 22px;
+}
+
+.content a.userLink {
+  font-size: 18px;
+}
+
+.userContent {
+  width: 100%;
+}
+
+.indexLinks {
+  width: 30%;
+}
+
+.indexLinks, .userLinks {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 0.5rem;
+}
+
+.userLinks {
+  margin: 0 auto;
+  width: 45%;
+}
+
+form {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-size: medium;
+  font-size: large;
+}
+
+input, textarea {
+  margin-top: 5px;
+  margin-bottom: 18px;
+  appearance: none;
+  border: 1px solid lightgray;
+  border-radius: 12px;
+  padding: 6px 4px;
+  font-size: medium;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.submit {
+  margin: 1rem 0;
+  color: #fafafa;
+  background-color: #0c4a6e;
+  border-radius: 8px;
+  border: none;
+  font-size: large;
+  padding: 0.5rem;
+  width: 100px;
+}
+
+.submit:hover {
+  cursor: pointer;
+  background-color: #0369a1;
+}
+
+li {
+  list-style: none;
+  margin-bottom: 8px;
+}
+
+.errors {
+  width: 60%;
+  color: #450a0a;
+  font-size: large;
+  text-align: left;
+}
+
+.messagesDisplay {
+  margin-top: 2rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  width: 98%;
+  background-color: white;
+}
+
+.message {
+  text-align: left;
+  padding: 0 0.8rem;
+}
+
+.messageInfo {
+  display: flex;
+}
+
+.author {
+  margin-left: 5px;
+}
+
+.delete {
+  appearance: none;
+  margin: auto auto auto 0;
+  padding: 2px;
+  height: 25px;
+  border: 2px solid darkred;
+  border-radius: 2px;
+  color: #450a0a;
+  background-color: #ffffff00;
+}
+
+.delete:hover {
+  cursor: pointer;
+  background-color: #991b1b;
+  color: #ffffff;
+}
+
+#hidden {
+  display: none;
+}
+
+.deleteForm {
+  margin-left: auto;
+  display: flex;
+  justify-content: flex-end;
+  width: 3rem;
+}
+
+@media (max-width: 1500px) {
+  .content {
+    width: 80%;
+  }
+}
+
+@media (max-width: 650px) {
+  header .greeting {
+    font-size: small;
+    font-weight: bold;
+  }
+
+  header .greeting span {
+    display: none;
+  }
+
+  .indexLinks {
+    width: 60%;
+  }
+
+  .userLinks {
+    width: 65%;
+  }
+}
+
+@media (max-width: 500px) {
+  header a {
+    right: 2rem;
+  }
+}
+
+@media (max-width: 410px) {
+  header .greeting {
+    display: none;
+  }
+}

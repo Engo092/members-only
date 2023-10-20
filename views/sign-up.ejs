@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Members Only</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <header>
+      <h1>Private Club</h1>
+    </header>
+    <div class="content">
+      <h2>Sign Up</h2>
+      <form method="POST" action="">
+          <legend for="firstname">First Name</legend>
+          <input type="text" name="firstname" placeholder="First Name" value="<% if(user!==undefined) { %> <%= user.firstname%> <% } %>" required>
+          <legend for="lastname">Last Name</legend>
+          <input type="text" name="lastname" placeholder="Last Name" value="<% if(user!==undefined) { %> <%= user.lastname%> <% } %>" required>
+          <legend for="username">Username (E-mail)</legend>
+          <input type="email" name="username" placeholder="E-mail" value="<% if(user!==undefined) { %> <%= user.username%> <% } %>" required>
+          <legend for="password">Password (minimum of 4 characters)</legend>
+          <input type="password" name="password" placeholder="Password" minlength=4 required>
+          <legend for="passwordConfirm">Confirm Password</legend>
+          <input type="password" name="passwordConfirm" placeholder="Confirm Password" minlength=4 required>
+          <button type="submit" class="submit" name="signup">Sign Up</button>
+      </form>
+
+      <% if(locals.errors !== undefined) { %>
+        <ul class="errors">
+        <% for (let i = 0; i < errors.length; i++) {%>
+          <li> <%= errors[i].msg %> </li>
+        <% } %>
+      <% } %>
+    </div>
+  </body>
+</html>

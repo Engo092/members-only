@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Members Only</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <header>
+        <% if (locals.currentUser !== undefined) { %>
+            <p class="greeting"><span>Hello,</span> <%= locals.currentUser.username %></p>
+        <% } %>
+        <h1>Private Club</h1>
+        <% if (locals.currentUser !== undefined) { %>
+        <a href="/log-out">Log Out</a>
+        <% } %>
+    </header>
+    <div class="content">
+      <h2>Send Message</h2>
+      <% if (locals.currentUser !== undefined) {%>
+        <form method="POST" action="">
+            <legend for="messageTitle">Message Title</legend>
+            <input type="text" name="messageTitle" placeholder="Message Title" value="<% if(locals.messageTitle!==undefined) { %> <%= username%> <% } %>" required>
+            <legend for="message">Write Your Message</legend>
+            <textarea type="textarea" name="message" placeholder="Message" required><%- locals.message !== undefined ? `${locals.message}` : '' %></textarea>
+            <button type="submit" class="submit" name="login">Send</button>
+        </form>
+      <% } else { %>
+            <p>You must be logged in to send a message.</p>
+      <% } %>
+
+      <% if(locals.errors !== undefined) { %>
+        <ul class="errors">
+        <% for (let i = 0; i < errors.length; i++) {%>
+          <li> <%= errors[i].msg %> </li>
+        <% } %>
+      <% } %>
+
+      <% if(locals.mismatchErrors !== undefined) { %>
+        <ul class="errors">
+          <li> <%= mismatchErrors[mismatchErrors.length-1] %>
+      <% } %>
+    </div>
+  </body>
+</html>

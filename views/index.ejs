@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Members Only</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <header>
+      <% if (locals.currentUser !== undefined) {%>
+        <p class="greeting"><span>Hello,</span> <%= locals.currentUser.username %></p>
+      <% } %>
+        <h1>Private Club</h1>
+      <% if (locals.currentUser !== undefined) {%>
+        <a href="/log-out">Log Out</a>
+      <% } %>
+    </header>
+
+    <div class="content">
+      <!-- message for non-users -->
+      <% if (locals.currentUser === undefined) {%>
+
+        <h2>Welcome to our private club! Make an account to join us, or log in to your existing account.</h2>
+        <div class="indexLinks">
+          <a class="contentLink" href="/sign-up">Sign Up</a>
+          <a class="contentLink" href="/log-in">Log In</a>
+        </div>
+      <% } else { %>
+
+        <!-- changes display in case of user being a member or not -->
+        <% if (locals.currentUser.membership_status !== "member") { %>
+          <h2>Welcome back, <%= locals.currentUser.firstname %> <%= locals.currentUser.lastname %></h2>
+
+          <div class="userContent">
+            <div class="userLinks">
+              <a class="contentLink userLink" href="/membership">Become a club member</a>
+              <a class="contentLink userLink" href="/message">Send new message</a>
+            </div>
+          </div>
+        <% } else { %>
+          <h2>Welcome back, Club Member <%= locals.currentUser.firstname %> <%= locals.currentUser.lastname %></h2>
+
+          <div class="userContent">
+            <div class="userLinks">
+              <% if (!locals.currentUser.isAdmin) { %>
+                <a class="contentLink userLink" href="/admin">Become an admin</a>
+              <% } %>
+              <a class="contentLink userLink" href="/message">Send new message</a>
+            </div>
+          </div>
+        <% } %>
+      <% } %>
+      <% if (locals.message_list !== undefined && message_list.length > 0) { %>
+        <div class="messagesDisplay">
+          <h2>All Messages</h2>
+          <% for (let i = 0; i < message_list.length; i++) { %>
+            <div class="message">
+              <span class="messageInfo">
+                <p><strong><%= message_list[i].title %></strong></p>
+                <% if (locals.currentUser !== undefined && locals.currentUser.membership_status == 'member') { %>
+                  <% for (let j = 0; j < user_list.length; j++) { %>
+                    <% if (user_list[j].messages.includes(message_list[i]._id)) { %>
+                      <p class="author"> - Sent by <%= user_list[j].username %> at <%= message_list[i].formatted_timestamp %></p>
+                      <% if (locals.currentUser.isAdmin) {%>
+                        <form class="deleteForm" method="POST" action="/delete">
+                          <input id="hidden" type="text" name="deleted" value="<%= message_list[i]._id %>">
+                          <button type="submit" class="delete">DELETE</button>
+                        </form>
+                      <% } %>
+                    <% } %>
+                  <% } %>
+                <% } %>
+              </span>
+              
+              <p><%= message_list[i].text %></p>
+            </div>
+          <% } %>
+        </div>
+      <% } %>
+    </div>
+  </body>
+</html>

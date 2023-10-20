@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Members Only</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <header>
+      <h1>Private Club</h1>
+    </header>
+    <div class="content">
+      <h2>Log In</h2>
+      <form method="POST" action="">
+          <legend for="username">Username (E-mail)</legend>
+          <input type="email" name="username" placeholder="E-mail" value="<% if(username!==undefined) { %> <%= username%> <% } %>" required>
+          <legend for="password">Password</legend>
+          <input type="password" name="password" placeholder="Password" required>
+          <button type="submit" class="submit" name="login">Log In</button>
+      </form>
+
+      <% if(locals.errors !== undefined) { %>
+        <ul class="errors">
+        <% for (let i = 0; i < errors.length; i++) {%>
+          <li> <%= errors[i].msg %> </li>
+        <% } %>
+      <% } %>
+
+      <% if(locals.mismatchErrors !== undefined) { %>
+        <ul class="errors">
+          <li> <%= mismatchErrors[mismatchErrors.length-1] %>
+      <% } %>
+    </div>
+  </body>
+</html>

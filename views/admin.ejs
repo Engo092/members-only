@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Members Only</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <header>
+        <% if (locals.currentUser !== undefined) {%>
+            <p class="greeting"><span>Hello,</span> <%= locals.currentUser.username %></p>
+        <% } %>
+        <h1>Private Club</h1>
+        <% if (locals.currentUser !== undefined) {%>
+        <a href="/log-out">Log Out</a>
+        <% } %>
+    </header>
+    <div class="content">
+      <h2>Become an Admin</h2>
+      <% console.log(locals.currentUser) %>
+      <% if (locals.currentUser !== undefined && locals.currentUser.isAdmin === undefined && locals.currentUser.membership_status === 'member') { %>
+        <form method="POST" action="">
+            <legend for="password">Enter the Secret Password</legend>
+            <input type="password" name="password" placeholder="Password" required>
+            <button class="submit" type="submit" name="login">Join</button>
+        </form>
+      <% } else { %>
+            <% if (locals.currentUser === undefined || locals.currentUser.isAdmin === undefined) { %>
+                <p>Please Log In and join the club before becoming an admin.</p>
+            <% } else { %>
+                <p>You already are an admin.</p>
+            <% } %>
+      <% } %>
+
+      <% if(locals.errors !== undefined) { %>
+        <ul class="errors">
+        <% for (let i = 0; i < errors.length; i++) {%>
+          <li> <%= errors[i].msg %> </li>
+        <% } %>
+      <% } %>
+
+      <% if(locals.mismatchErrors !== undefined) { %>
+        <ul class="errors">
+          <li> <%= mismatchErrors[mismatchErrors.length-1] %>
+      <% } %>
+    </div>
+  </body>
+</html>
