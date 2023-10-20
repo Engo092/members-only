@@ -9,3 +9,5 @@ This served as a great project to familiarize myself even more with the back-end
 Overall, working with the back-end is more difficult than I initially thought, but I am liking it.
 
 This project is part of The Odin Project curriculum.
+
+Link to deployed project: https://members-only-production-8605.up.railway.app/
